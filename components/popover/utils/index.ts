@@ -1,2 +1,1 @@
-export * from './use-friendship-popover'
-
+export * from './use_friendship_popover'

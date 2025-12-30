@@ -1,2 +1,2 @@
-export * from './use-add-friend'
+export * from './use_add_friend'
 
