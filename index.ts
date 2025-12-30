@@ -8,6 +8,7 @@ export * from './nuc_friendship'
  */
 export * from './components'
 export * from './atomic'
+export * from './vitests'
 
 /**
  *  Files exports
