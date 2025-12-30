@@ -1,0 +1,133 @@
+import { ref } from 'vue'
+
+import type {
+  NucFriendshipObjectInterface,
+  NucFriendshipRequestsInterface,
+  UseLoadingInterface,
+} from 'atomic'
+import { apiHandle, useApiSuccess, useLoading } from 'atomic'
+
+export function friendshipRequests(): NucFriendshipRequestsInterface {
+  const results = ref<NucFriendshipObjectInterface[]>([])
+
+  const { loading, setLoading }: UseLoadingInterface = useLoading()
+  const { apiSuccess } = useApiSuccess()
+
+  async function getAllFriendships(loading?: boolean): Promise<void> {
+    await apiHandle<NucFriendshipObjectInterface[]>({
+      url: apiUrl() + '/friendship/all',
+      setLoading: loading ? setLoading : undefined,
+      onSuccess: (response: NucFriendshipObjectInterface[]) => {
+        results.value = response
+      },
+    })
+  }
+
+  async function sendRequest(recipientId: number): Promise<void> {
+    await apiHandle<{ message: string }>({
+      url: apiUrl() + '/friendship/send-request',
+      method: 'POST',
+      id: recipientId,
+      onSuccess: () => {
+        apiSuccess(
+          { message: 'Friend request sent successfully' },
+          getAllFriendships,
+          undefined,
+          'create'
+        )
+      },
+    })
+  }
+
+  async function acceptRequest(senderId: number): Promise<void> {
+    await apiHandle<{ message: string }>({
+      url: apiUrl() + '/friendship/accept-request',
+      method: 'POST',
+      id: senderId,
+      onSuccess: () => {
+        apiSuccess(
+          { message: 'Friend request accepted successfully' },
+          getAllFriendships,
+          undefined,
+          'edit'
+        )
+      },
+    })
+  }
+
+  async function denyRequest(senderId: number): Promise<void> {
+    await apiHandle<{ message: string }>({
+      url: apiUrl() + '/friendship/deny-request',
+      method: 'POST',
+      id: senderId,
+      onSuccess: () => {
+        apiSuccess(
+          { message: 'Friend request denied successfully' },
+          getAllFriendships,
+          undefined,
+          'edit'
+        )
+      },
+    })
+  }
+
+  async function removeFriend(friendId: number): Promise<void> {
+    await apiHandle<{ message: string }>({
+      url: apiUrl() + '/friendship/remove',
+      method: 'DELETE',
+      id: friendId,
+      onSuccess: () => {
+        apiSuccess(
+          { message: 'Friend removed successfully' },
+          getAllFriendships,
+          undefined,
+          'delete'
+        )
+      },
+    })
+  }
+
+  async function blockFriend(friendId: number): Promise<void> {
+    await apiHandle<{ message: string }>({
+      url: apiUrl() + '/friendship/block',
+      method: 'POST',
+      id: friendId,
+      onSuccess: () => {
+        apiSuccess(
+          { message: 'Friend blocked successfully' },
+          getAllFriendships,
+          undefined,
+          'edit'
+        )
+      },
+    })
+  }
+
+  async function unblockFriend(friendId: number): Promise<void> {
+    await apiHandle<{ message: string }>({
+      url: apiUrl() + '/friendship/unblock',
+      method: 'DELETE',
+      id: friendId,
+      onSuccess: () => {
+        apiSuccess(
+          { message: 'Friend unblocked successfully' },
+          getAllFriendships,
+          undefined,
+          'edit'
+        )
+      },
+    })
+  }
+
+  return {
+    results,
+    loading,
+    getAllFriendships,
+    sendRequest,
+    acceptRequest,
+    denyRequest,
+    removeFriend,
+    blockFriend,
+    unblockFriend,
+  }
+}

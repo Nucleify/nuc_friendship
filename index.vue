@@ -1,7 +1,22 @@
 <template>
-  <ad-card>
-    <template #content>
-      <nuc-friends-list />
-    </template>
-  </ad-card>
+  <ad-popover
+    dismissable
+    icon="prime:users"
+    :position="position"
+    popover-class="friendship-popover"
+    button-text="Friends"
+    button-class="friendship-popover-toggle"
+  >
+    <nuc-friendship-popover />
+  </ad-popover>
 </template>
+
+<script setup lang="ts">
+defineProps<{
+  position: PositionType
+}>()
+</script>
+
+<style lang="scss">
+@import '.';
+</style>

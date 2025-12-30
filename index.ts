@@ -7,6 +7,7 @@ export * from './nuc_friendship'
  *  Folders exports
  */
 export * from './components'
+export * from './atomic'
 
 /**
  *  Files exports
