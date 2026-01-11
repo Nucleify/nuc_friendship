@@ -49,6 +49,7 @@ const {
   removeFriend,
   blockFriend,
   unblockFriend,
+  getAllFriendships,
 } = friendshipRequests()
 
 const {
@@ -68,6 +69,10 @@ const {
   removeFriend,
   blockFriend,
   unblockFriend,
+})
+
+onMounted(() => {
+  getAllFriendships()
 })
 </script>
 
