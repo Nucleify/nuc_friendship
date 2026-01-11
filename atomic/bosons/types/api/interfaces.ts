@@ -7,7 +7,7 @@ import type {
 export interface NucFriendshipRequestsInterface {
   results: EntityResultsType<NucFriendshipObjectInterface>
   loading: LoadingRefType
-  getAllFriendships: () => Promise<void>
+  getAllFriendships: (loading?: boolean) => Promise<void>
   sendRequest: (recipientId: number) => Promise<void>
   acceptRequest: (senderId: number) => Promise<void>
   denyRequest: (senderId: number) => Promise<void>

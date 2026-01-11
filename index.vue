@@ -1,5 +1,6 @@
 <template>
   <ad-popover
+    v-if="!loading"
     dismissable
     icon="prime:users"
     :position="position"
@@ -12,9 +13,17 @@
 </template>
 
 <script setup lang="ts">
+import { friendshipRequests } from 'atomic'
+
 defineProps<{
   position: PositionType
 }>()
+
+const { loading, getAllFriendships } = friendshipRequests()
+
+onMounted(() => {
+  getAllFriendships(true)
+})
 </script>
 
 <style lang="scss">

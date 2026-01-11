@@ -1,7 +1,7 @@
 {
   "name": "nuc_friendship",
   "description": "Module that contains friendship functions.",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "category": "core",
   "installed": true,
   "enabled": true
