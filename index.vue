@@ -4,7 +4,7 @@
     icon="prime:users"
     :position="position"
     popover-class="friendship-popover"
-    button-text="Friends"
+    :button-text="isMobile() ? '' : 'Friends'"
     button-class="friendship-popover-toggle"
   >
     <nuc-friendship-popover />
