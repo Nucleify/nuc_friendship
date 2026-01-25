@@ -12,57 +12,54 @@ beforeEach(function (): void {
 });
 
 describe('401', function (): void {
-    test('index api', function () {
-        $this->getJson(route('friendship.index'))
-            ->assertStatus(401)
-            ->assertJson(['message' => 'Unauthenticated.']);
-    });
-
-    test('sendRequest api', function () {
-        $recipient = $this->user;
-
-        $this->postJson(route('friendship.sendRequest', $recipient))
-            ->assertStatus(401)
-            ->assertJson(['message' => 'Unauthenticated.']);
-    });
-
-    test('acceptRequest api', function () {
-        $sender = $this->user;
-
-        $this->postJson(route('friendship.acceptRequest', $sender))
-            ->assertStatus(401)
-            ->assertJson(['message' => 'Unauthenticated.']);
-    });
-
-    test('denyRequest api', function () {
-        $sender = $this->user;
-
-        $this->postJson(route('friendship.denyRequest', $sender))
-            ->assertStatus(401)
-            ->assertJson(['message' => 'Unauthenticated.']);
-    });
-
-    test('removeFriend api', function () {
-        $friend = $this->user;
-
-        $this->deleteJson(route('friendship.remove', $friend))
-            ->assertStatus(401)
-            ->assertJson(['message' => 'Unauthenticated.']);
-    });
-
-    test('blockFriend api', function () {
-        $friend = $this->user;
-
-        $this->postJson(route('friendship.block', $friend))
-            ->assertStatus(401)
-            ->assertJson(['message' => 'Unauthenticated.']);
-    });
-
-    test('unblockFriend api', function () {
-        $friend = $this->user;
-
-        $this->deleteJson(route('friendship.unblock', $friend))
-            ->assertStatus(401)
-            ->assertJson(['message' => 'Unauthenticated.']);
-    });
+    apiTestArray([
+        'index api' => [
+            'method' => 'GET',
+            'route' => 'friendship.index',
+            'status' => 401,
+            'fragment' => ['message' => 'Unauthenticated.'],
+        ],
+        'sendRequest api' => [
+            'method' => 'POST',
+            'route' => 'friendship.sendRequest',
+            'status' => 401,
+            'id' => 1,
+            'fragment' => ['message' => 'Unauthenticated.'],
+        ],
+        'acceptRequest api' => [
+            'method' => 'POST',
+            'route' => 'friendship.acceptRequest',
+            'status' => 401,
+            'id' => 1,
+            'fragment' => ['message' => 'Unauthenticated.'],
+        ],
+        'denyRequest api' => [
+            'method' => 'POST',
+            'route' => 'friendship.denyRequest',
+            'status' => 401,
+            'id' => 1,
+            'fragment' => ['message' => 'Unauthenticated.'],
+        ],
+        'removeFriend api' => [
+            'method' => 'DELETE',
+            'route' => 'friendship.remove',
+            'status' => 401,
+            'id' => 1,
+            'fragment' => ['message' => 'Unauthenticated.'],
+        ],
+        'blockFriend api' => [
+            'method' => 'POST',
+            'route' => 'friendship.block',
+            'status' => 401,
+            'id' => 1,
+            'fragment' => ['message' => 'Unauthenticated.'],
+        ],
+        'unblockFriend api' => [
+            'method' => 'DELETE',
+            'route' => 'friendship.unblock',
+            'status' => 401,
+            'id' => 1,
+            'fragment' => ['message' => 'Unauthenticated.'],
+        ],
+    ]);
 });
