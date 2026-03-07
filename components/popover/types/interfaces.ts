@@ -1,6 +1,6 @@
 import type { Ref } from 'vue'
 
-import type { NucFriendshipObjectInterface } from 'atomic'
+import type { NucFriendshipObjectInterface } from 'nucleify'
 
 export interface UseFriendshipPopoverInterface {
   results: Ref<NucFriendshipObjectInterface[] | undefined>

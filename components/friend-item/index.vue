@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import type { NucFriendshipObjectInterface } from 'atomic'
+import type { NucFriendshipObjectInterface } from 'nucleify'
 
 defineProps<{
   friendship: NucFriendshipObjectInterface

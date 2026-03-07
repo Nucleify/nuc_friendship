@@ -1,20 +1,20 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { ref } from 'vue'
 
-import * as atomic from 'atomic'
-
 import { useAddFriend } from '.'
+
+import * as nucleify from 'nucleify'
 
 describe('useAddFriend', (): void => {
   let searchEmail: ReturnType<typeof ref<string>>
-  let friendship: atomic.NucFriendshipRequestsInterface
-  let users: atomic.NucUserRequestsInterface
+  let friendship: nucleify.NucFriendshipRequestsInterface
+  let users: nucleify.NucUserRequestsInterface
   let useAddFriendInstance: ReturnType<typeof useAddFriend>
 
   beforeEach((): void => {
     searchEmail = ref('')
-    friendship = atomic.friendshipRequests()
-    users = atomic.userRequests()
+    friendship = nucleify.friendshipRequests()
+    users = nucleify.userRequests()
 
     useAddFriendInstance = useAddFriend({
       searchEmail,
@@ -49,7 +49,7 @@ describe('useAddFriend', (): void => {
 
   it('should send friend request when user is found', async (): Promise<void> => {
     searchEmail.value = 'test@example.com'
-    const mockUser: atomic.NucUserObjectInterface = {
+    const mockUser: nucleify.NucUserObjectInterface = {
       id: 1,
       name: 'Test User',
       email: 'test@example.com',
@@ -58,7 +58,7 @@ describe('useAddFriend', (): void => {
       updated_at: new Date().toISOString(),
     }
 
-    atomic.mockGlobalFetch(vi, [mockUser])
+    nucleify.mockGlobalFetch(vi, [mockUser])
     const getAllUsersSpy = vi.spyOn(users, 'getAllUsers')
     const sendRequestSpy = vi.spyOn(friendship, 'sendRequest')
 
@@ -70,7 +70,7 @@ describe('useAddFriend', (): void => {
 
   it('should handle case-insensitive email matching', async (): Promise<void> => {
     searchEmail.value = 'TEST@EXAMPLE.COM'
-    const mockUser: atomic.NucUserObjectInterface = {
+    const mockUser: nucleify.NucUserObjectInterface = {
       id: 1,
       name: 'Test User',
       email: 'test@example.com',
@@ -79,7 +79,7 @@ describe('useAddFriend', (): void => {
       updated_at: new Date().toISOString(),
     }
 
-    atomic.mockGlobalFetch(vi, [mockUser])
+    nucleify.mockGlobalFetch(vi, [mockUser])
     const getAllUsersSpy = vi.spyOn(users, 'getAllUsers')
     const sendRequestSpy = vi.spyOn(friendship, 'sendRequest')
 
@@ -92,7 +92,7 @@ describe('useAddFriend', (): void => {
   it('should return early when user is not found', async (): Promise<void> => {
     searchEmail.value = 'notfound@example.com'
 
-    atomic.mockGlobalFetch(vi, [])
+    nucleify.mockGlobalFetch(vi, [])
     const getAllUsersSpy = vi.spyOn(users, 'getAllUsers')
     const sendRequestSpy = vi.spyOn(friendship, 'sendRequest')
 
@@ -108,9 +108,9 @@ describe('useAddFriend', (): void => {
       name: 'Test User',
       email: 'test@example.com',
       role: 'user',
-    } as unknown as atomic.NucUserObjectInterface
+    } as unknown as nucleify.NucUserObjectInterface
 
-    atomic.mockGlobalFetch(vi, [mockUser])
+    nucleify.mockGlobalFetch(vi, [mockUser])
     const getAllUsersSpy = vi.spyOn(users, 'getAllUsers')
     const sendRequestSpy = vi.spyOn(friendship, 'sendRequest')
 

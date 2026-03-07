@@ -1,15 +1,15 @@
 import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
 
-import * as atomic from 'atomic'
+import * as nucleify from 'nucleify'
 
 describe('friendshipRequests', (): void => {
-  const requests: atomic.NucFriendshipRequestsInterface =
-    atomic.friendshipRequests()
-  const mockResponse = [atomic.mockFriendship]
+  const requests: nucleify.NucFriendshipRequestsInterface =
+    nucleify.friendshipRequests()
+  const mockResponse = [nucleify.mockFriendship]
 
   beforeEach((): void => {
     vi.clearAllMocks()
-    atomic.mockGlobalFetch(vi, mockResponse)
+    nucleify.mockGlobalFetch(vi, mockResponse)
   })
 
   it('getAllFriendships', async (): Promise<void> => {

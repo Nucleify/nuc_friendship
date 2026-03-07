@@ -20,8 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { friendshipRequests, userRequests } from 'atomic'
-
+import { friendshipRequests, userRequests } from 'nucleify'
 import { useAddFriend } from './utils'
 
 const friendship = friendshipRequests()

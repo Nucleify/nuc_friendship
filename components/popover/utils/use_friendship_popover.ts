@@ -3,7 +3,7 @@ import { computed, ref } from 'vue'
 import type {
   NucFriendshipTabType,
   UseFriendshipPopoverInterface,
-} from 'atomic'
+} from 'nucleify'
 
 export function useFriendshipPopover({
   results,

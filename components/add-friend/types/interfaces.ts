@@ -3,7 +3,7 @@ import type { Ref } from 'vue'
 import type {
   NucFriendshipRequestsInterface,
   NucUserRequestsInterface,
-} from 'atomic'
+} from 'nucleify'
 
 export interface UseAddFriendInterface {
   searchEmail: Ref<string>

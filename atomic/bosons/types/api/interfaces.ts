@@ -2,7 +2,7 @@ import type {
   EntityResultsType,
   LoadingRefType,
   NucFriendshipObjectInterface,
-} from 'atomic'
+} from 'nucleify'
 
 export interface NucFriendshipRequestsInterface {
   results: EntityResultsType<NucFriendshipObjectInterface>

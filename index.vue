@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { friendshipRequests } from 'atomic'
+import { friendshipRequests } from 'nucleify'
 
 defineProps<{
   position: PositionType

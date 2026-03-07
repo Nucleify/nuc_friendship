@@ -1,4 +1,4 @@
-import type { NucFriendshipObjectInterface } from 'atomic'
+import type { NucFriendshipObjectInterface } from 'nucleify'
 
 export const mockFriendship: NucFriendshipObjectInterface = {
   id: 99,

@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import type { NucFriendshipTabType } from 'atomic'
+import type { NucFriendshipTabType } from 'nucleify'
 
 defineProps<{
   activeTab: NucFriendshipTabType

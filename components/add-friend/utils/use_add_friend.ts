@@ -1,5 +1,4 @@
-import type { NucUserObjectInterface } from 'atomic'
-
+import type { NucUserObjectInterface } from 'nucleify'
 import type { UseAddFriendInterface } from '../types'
 
 export function useAddFriend({

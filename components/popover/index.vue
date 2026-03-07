@@ -38,8 +38,7 @@
 </template>
 
 <script setup lang="ts">
-import { friendshipRequests } from 'atomic'
-
+import { friendshipRequests } from 'nucleify'
 import { useFriendshipPopover } from './utils'
 
 const {

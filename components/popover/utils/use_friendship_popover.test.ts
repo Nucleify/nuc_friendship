@@ -1,16 +1,16 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { ref } from 'vue'
 
-import * as atomic from 'atomic'
-
 import { useFriendshipPopover } from '.'
 
+import * as nucleify from 'nucleify'
+
 describe('useFriendshipPopover', (): void => {
-  let results: ReturnType<typeof ref<atomic.NucFriendshipObjectInterface[]>>
-  let friendship: atomic.NucFriendshipRequestsInterface
+  let results: ReturnType<typeof ref<nucleify.NucFriendshipObjectInterface[]>>
+  let friendship: nucleify.NucFriendshipRequestsInterface
   let useFriendshipPopoverInstance: ReturnType<typeof useFriendshipPopover>
 
-  const mockFriendshipAccepted: atomic.NucFriendshipObjectInterface = {
+  const mockFriendshipAccepted: nucleify.NucFriendshipObjectInterface = {
     id: 1,
     friend: {
       id: 2,
@@ -23,7 +23,7 @@ describe('useFriendshipPopover', (): void => {
     updated_at: new Date().toISOString(),
   }
 
-  const mockFriendshipPending: atomic.NucFriendshipObjectInterface = {
+  const mockFriendshipPending: nucleify.NucFriendshipObjectInterface = {
     id: 2,
     friend: {
       id: 3,
@@ -36,7 +36,7 @@ describe('useFriendshipPopover', (): void => {
     updated_at: new Date().toISOString(),
   }
 
-  const mockFriendshipBlocked: atomic.NucFriendshipObjectInterface = {
+  const mockFriendshipBlocked: nucleify.NucFriendshipObjectInterface = {
     id: 3,
     friend: {
       id: 4,
@@ -51,9 +51,9 @@ describe('useFriendshipPopover', (): void => {
 
   beforeEach((): void => {
     vi.clearAllMocks()
-    atomic.mockGlobalFetch(vi, [])
+    nucleify.mockGlobalFetch(vi, [])
 
-    friendship = atomic.friendshipRequests()
+    friendship = nucleify.friendshipRequests()
     results = friendship.results
 
     results.value = [
@@ -96,7 +96,7 @@ describe('useFriendshipPopover', (): void => {
 
   it('should return empty array when results is undefined', (): void => {
     results.value =
-      undefined as unknown as atomic.NucFriendshipObjectInterface[]
+      undefined as unknown as nucleify.NucFriendshipObjectInterface[]
 
     expect(useFriendshipPopoverInstance.friends.value).toEqual([])
     expect(useFriendshipPopoverInstance.requests.value).toEqual([])
@@ -119,7 +119,7 @@ describe('useFriendshipPopover', (): void => {
       | 'blockFriend'
       | 'unblockFriend'
   ) {
-    const testFriendship = atomic.friendshipRequests()
+    const testFriendship = nucleify.friendshipRequests()
     const spy = vi.spyOn(testFriendship, methodName)
     const instance = useFriendshipPopover({
       results,
@@ -168,7 +168,7 @@ describe('useFriendshipPopover', (): void => {
   })
 
   it('should update filtered lists when results change', (): void => {
-    const newFriendship: atomic.NucFriendshipObjectInterface = {
+    const newFriendship: nucleify.NucFriendshipObjectInterface = {
       id: 4,
       friend: {
         id: 5,
