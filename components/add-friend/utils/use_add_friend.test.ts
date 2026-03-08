@@ -1,9 +1,9 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { ref } from 'vue'
 
-import { useAddFriend } from '.'
-
 import * as nucleify from 'nucleify'
+
+import { useAddFriend } from '.'
 
 describe('useAddFriend', (): void => {
   let searchEmail: ReturnType<typeof ref<string>>

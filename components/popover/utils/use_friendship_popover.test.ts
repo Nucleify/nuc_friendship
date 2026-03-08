@@ -1,9 +1,9 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { ref } from 'vue'
 
-import { useFriendshipPopover } from '.'
-
 import * as nucleify from 'nucleify'
+
+import { useFriendshipPopover } from '.'
 
 describe('useFriendshipPopover', (): void => {
   let results: ReturnType<typeof ref<nucleify.NucFriendshipObjectInterface[]>>

@@ -39,6 +39,7 @@
 
 <script setup lang="ts">
 import { friendshipRequests } from 'nucleify'
+
 import { useFriendshipPopover } from './utils'
 
 const {
