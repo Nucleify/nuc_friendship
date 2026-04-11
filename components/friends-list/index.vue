@@ -44,4 +44,3 @@ defineEmits<{
 <style lang="scss" scoped>
 @import 'index';
 </style>
-

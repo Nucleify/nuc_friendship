@@ -45,4 +45,3 @@ async function handleAddFriend() {
 <style lang="scss" scoped>
 @import 'index';
 </style>
-

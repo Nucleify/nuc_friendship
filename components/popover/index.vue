@@ -1,10 +1,6 @@
 <template>
   <div class="friendship-popover-container">
-    <ad-heading
-      :tag="3"
-      text="Friends"
-      class="friendship-header"
-    />
+    <ad-heading :tag="3" text="Friends" class="friendship-header" />
 
     <div class="friendship-content">
       <nuc-friendship-add-friend />

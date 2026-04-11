@@ -33,4 +33,3 @@ function toTitleCase(str: string): string {
 <style lang="scss" scoped>
 @import 'index';
 </style>
-
