@@ -3,7 +3,7 @@
     <ad-heading :tag="3" text="Friends" class="friendship-header" />
 
     <div class="friendship-content">
-      <nuc-friendship-add-friend />
+      <nuc-friendship-add-friend :friendship-requests="friendship" />
 
       <nuc-friendship-tabs
         :active-tab="activeTab"
@@ -34,19 +34,16 @@
 </template>
 
 <script setup lang="ts">
-import { friendshipRequests } from 'nucleify'
+import type { NucFriendshipRequestsInterface } from '../../atomic/bosons/types/api/interfaces'
 
 import { useFriendshipPopover } from './utils'
 
-const {
-  results,
-  acceptRequest,
-  denyRequest,
-  removeFriend,
-  blockFriend,
-  unblockFriend,
-  getAllFriendships,
-} = friendshipRequests()
+/** Jedna instancja z `NucFriendship` (prop) — bez inject przez Teleport. */
+const props = defineProps<{
+  friendshipRequests: NucFriendshipRequestsInterface
+}>()
+
+const friendship = props.friendshipRequests
 
 const {
   activeTab,
@@ -58,18 +55,7 @@ const {
   handleRemoveFriend,
   handleBlockFriend,
   handleUnblockFriend,
-} = useFriendshipPopover({
-  results,
-  acceptRequest,
-  denyRequest,
-  removeFriend,
-  blockFriend,
-  unblockFriend,
-})
-
-onMounted(() => {
-  getAllFriendships()
-})
+} = useFriendshipPopover(() => props.friendshipRequests)
 </script>
 
 <style lang="scss">

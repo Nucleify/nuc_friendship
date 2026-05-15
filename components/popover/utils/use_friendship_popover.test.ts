@@ -31,6 +31,7 @@ describe('useFriendshipPopover', (): void => {
       email: 'friend2@example.com',
       role: 'user',
     },
+    incoming: true,
     status: 'pending',
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
@@ -62,14 +63,7 @@ describe('useFriendshipPopover', (): void => {
       mockFriendshipBlocked,
     ]
 
-    useFriendshipPopoverInstance = useFriendshipPopover({
-      results,
-      acceptRequest: friendship.acceptRequest,
-      denyRequest: friendship.denyRequest,
-      removeFriend: friendship.removeFriend,
-      blockFriend: friendship.blockFriend,
-      unblockFriend: friendship.unblockFriend,
-    })
+    useFriendshipPopoverInstance = useFriendshipPopover(() => friendship)
   })
 
   it('should initialize activeTab as friends', (): void => {
@@ -121,14 +115,7 @@ describe('useFriendshipPopover', (): void => {
   ) {
     const testFriendship = nucleify.friendshipRequests()
     const spy = vi.spyOn(testFriendship, methodName)
-    const instance = useFriendshipPopover({
-      results,
-      acceptRequest: testFriendship.acceptRequest,
-      denyRequest: testFriendship.denyRequest,
-      removeFriend: testFriendship.removeFriend,
-      blockFriend: testFriendship.blockFriend,
-      unblockFriend: testFriendship.unblockFriend,
-    })
+    const instance = useFriendshipPopover(() => testFriendship)
     return { instance, spy }
   }
 

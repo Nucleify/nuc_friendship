@@ -3,8 +3,8 @@
     <div class="friend-info">
       <ad-icon icon="prime:user" size="1.5em" />
       <div class="friend-details">
-        <ad-paragraph :text="friendship.friend.name" />
-        <ad-paragraph :text="friendship.friend.email" class="friend-email" />
+        <p class="friend-name">{{ friendName }}</p>
+        <p class="friend-email">{{ friendEmail }}</p>
       </div>
     </div>
     <div class="friend-actions">
@@ -14,11 +14,16 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+
 import type { NucFriendshipObjectInterface } from 'nucleify'
 
-defineProps<{
+const props = defineProps<{
   friendship: NucFriendshipObjectInterface
 }>()
+
+const friendName = computed(() => props.friendship.friend?.name?.trim() || '—')
+const friendEmail = computed(() => props.friendship.friend?.email?.trim() ?? '')
 </script>
 
 <style lang="scss">

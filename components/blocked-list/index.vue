@@ -29,7 +29,7 @@ defineProps<{
 }>()
 
 defineEmits<{
-  unblock: [friendId: number]
+  unblock: [friendId: number | string]
 }>()
 </script>
 

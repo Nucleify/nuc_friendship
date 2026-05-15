@@ -1,14 +1,14 @@
 <template>
   <ad-popover
-    v-if="!loading"
     dismissable
     icon="prime:users"
     :position="position"
     popover-class="friendship-popover"
     :button-text="isMobile() ? '' : 'Friends'"
     button-class="friendship-popover-toggle"
+    @show="syncFriendships"
   >
-    <nuc-friendship-popover />
+    <nuc-friendship-popover :friendship-requests="friendship" />
   </ad-popover>
 </template>
 
@@ -19,11 +19,11 @@ defineProps<{
   position: PositionType
 }>()
 
-const { loading, getAllFriendships } = friendshipRequests()
+const friendship = friendshipRequests()
 
-onMounted(() => {
-  getAllFriendships(true)
-})
+function syncFriendships(): void {
+  void friendship.getAllFriendships()
+}
 </script>
 
 <style lang="scss">

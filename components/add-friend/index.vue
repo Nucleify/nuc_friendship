@@ -20,11 +20,17 @@
 </template>
 
 <script setup lang="ts">
-import { friendshipRequests, userRequests } from 'nucleify'
+import type { NucFriendshipRequestsInterface } from '../../atomic/bosons/types/api/interfaces'
+
+import { userRequests } from 'nucleify'
 
 import { useAddFriend } from './utils'
 
-const friendship = friendshipRequests()
+const props = defineProps<{
+  friendshipRequests: NucFriendshipRequestsInterface
+}>()
+
+const friendship = props.friendshipRequests
 const users = userRequests()
 
 const searchEmail = ref('')

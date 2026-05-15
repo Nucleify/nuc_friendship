@@ -23,7 +23,7 @@ export function friendshipRequests(): NucFriendshipRequestsInterface {
     })
   }
 
-  async function sendRequest(recipientId: number): Promise<void> {
+  async function sendRequest(recipientId: number | string): Promise<void> {
     await apiHandle<{ message: string }>({
       url: apiUrl() + '/friendship/send-request',
       method: 'POST',
@@ -39,7 +39,7 @@ export function friendshipRequests(): NucFriendshipRequestsInterface {
     })
   }
 
-  async function acceptRequest(senderId: number): Promise<void> {
+  async function acceptRequest(senderId: number | string): Promise<void> {
     await apiHandle<{ message: string }>({
       url: apiUrl() + '/friendship/accept-request',
       method: 'POST',
@@ -55,7 +55,7 @@ export function friendshipRequests(): NucFriendshipRequestsInterface {
     })
   }
 
-  async function denyRequest(senderId: number): Promise<void> {
+  async function denyRequest(senderId: number | string): Promise<void> {
     await apiHandle<{ message: string }>({
       url: apiUrl() + '/friendship/deny-request',
       method: 'POST',
@@ -71,7 +71,7 @@ export function friendshipRequests(): NucFriendshipRequestsInterface {
     })
   }
 
-  async function removeFriend(friendId: number): Promise<void> {
+  async function removeFriend(friendId: number | string): Promise<void> {
     await apiHandle<{ message: string }>({
       url: apiUrl() + '/friendship/remove',
       method: 'DELETE',
@@ -87,7 +87,7 @@ export function friendshipRequests(): NucFriendshipRequestsInterface {
     })
   }
 
-  async function blockFriend(friendId: number): Promise<void> {
+  async function blockFriend(friendId: number | string): Promise<void> {
     await apiHandle<{ message: string }>({
       url: apiUrl() + '/friendship/block',
       method: 'POST',
@@ -103,7 +103,7 @@ export function friendshipRequests(): NucFriendshipRequestsInterface {
     })
   }
 
-  async function unblockFriend(friendId: number): Promise<void> {
+  async function unblockFriend(friendId: number | string): Promise<void> {
     await apiHandle<{ message: string }>({
       url: apiUrl() + '/friendship/unblock',
       method: 'DELETE',

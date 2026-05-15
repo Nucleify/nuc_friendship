@@ -1,12 +1,4 @@
-import type { Ref } from 'vue'
+import type { NucFriendshipRequestsInterface } from '../../../atomic/bosons/types/api/interfaces'
 
-import type { NucFriendshipObjectInterface } from 'nucleify'
-
-export interface UseFriendshipPopoverInterface {
-  results: Ref<NucFriendshipObjectInterface[] | undefined>
-  acceptRequest: (senderId: number) => Promise<void>
-  denyRequest: (senderId: number) => Promise<void>
-  removeFriend: (friendId: number) => Promise<void>
-  blockFriend: (friendId: number) => Promise<void>
-  unblockFriend: (friendId: number) => Promise<void>
-}
+/** Getter żeby computed śledził `results` (ref wewnątrz obiektu z propa). */
+export type GetFriendshipApi = () => NucFriendshipRequestsInterface

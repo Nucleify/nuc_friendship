@@ -1,50 +1,46 @@
 import { computed, ref } from 'vue'
 
-import type {
-  NucFriendshipTabType,
-  UseFriendshipPopoverInterface,
-} from 'nucleify'
+import type { NucFriendshipTabType } from '../../tabs/types/variables'
+import type { GetFriendshipApi } from '../types/interfaces'
 
-export function useFriendshipPopover({
-  results,
-  acceptRequest,
-  denyRequest,
-  removeFriend,
-  blockFriend,
-  unblockFriend,
-}: UseFriendshipPopoverInterface) {
+export function useFriendshipPopover(getFriendshipApi: GetFriendshipApi) {
   const activeTab = ref<NucFriendshipTabType>('friends')
 
-  const friends = computed(
-    () => results?.value?.filter((f) => f.status === 'accepted') ?? []
-  )
+  const friends = computed(() => {
+    const list = getFriendshipApi().results.value ?? []
+    return list.filter((f) => String(f.status).toLowerCase() === 'accepted')
+  })
 
-  const requests = computed(
-    () => results?.value?.filter((f) => f.status === 'pending') ?? []
-  )
+  const requests = computed(() => {
+    const list = getFriendshipApi().results.value ?? []
+    return list.filter(
+      (f) => String(f.status).toLowerCase() === 'pending' && f.incoming === true
+    )
+  })
 
-  const blocked = computed(
-    () => results?.value?.filter((f) => f.status === 'blocked') ?? []
-  )
+  const blocked = computed(() => {
+    const list = getFriendshipApi().results.value ?? []
+    return list.filter((f) => String(f.status).toLowerCase() === 'blocked')
+  })
 
-  async function handleAcceptRequest(senderId: number) {
-    await acceptRequest(senderId)
+  async function handleAcceptRequest(senderId: number | string) {
+    await getFriendshipApi().acceptRequest(senderId)
   }
 
-  async function handleDenyRequest(senderId: number) {
-    await denyRequest(senderId)
+  async function handleDenyRequest(senderId: number | string) {
+    await getFriendshipApi().denyRequest(senderId)
   }
 
-  async function handleRemoveFriend(friendId: number) {
-    await removeFriend(friendId)
+  async function handleRemoveFriend(friendId: number | string) {
+    await getFriendshipApi().removeFriend(friendId)
   }
 
-  async function handleBlockFriend(friendId: number) {
-    await blockFriend(friendId)
+  async function handleBlockFriend(friendId: number | string) {
+    await getFriendshipApi().blockFriend(friendId)
   }
 
-  async function handleUnblockFriend(friendId: number) {
-    await unblockFriend(friendId)
+  async function handleUnblockFriend(friendId: number | string) {
+    await getFriendshipApi().unblockFriend(friendId)
   }
 
   return {

@@ -36,8 +36,8 @@ defineProps<{
 }>()
 
 defineEmits<{
-  accept: [senderId: number]
-  deny: [senderId: number]
+  accept: [senderId: number | string]
+  deny: [senderId: number | string]
 }>()
 </script>
 
