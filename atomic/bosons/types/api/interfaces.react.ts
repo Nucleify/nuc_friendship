@@ -1,12 +1,12 @@
 import type {
   EntityResultsType,
-  LoadingRefType,
+  LoadingType,
   NucFriendshipObjectInterface,
 } from 'nucleify'
 
 export interface NucFriendshipRequestsInterface {
   results: EntityResultsType<NucFriendshipObjectInterface>
-  loading: LoadingRefType
+  loading: LoadingType
   getAllFriendships: (loading?: boolean) => Promise<void>
   sendRequest: (recipientId: number) => Promise<void>
   acceptRequest: (senderId: number) => Promise<void>

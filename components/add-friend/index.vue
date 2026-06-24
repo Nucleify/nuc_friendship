@@ -20,11 +20,8 @@
 </template>
 
 <script setup lang="ts">
-import type { NucFriendshipRequestsInterface } from '../../atomic/bosons/types/api/interfaces'
-
-import { userRequests } from 'nucleify'
-
-import { useAddFriend } from './utils'
+import type { NucFriendshipRequestsInterface } from 'nucleify'
+import { useAddFriend, userRequests } from 'nucleify'
 
 const props = defineProps<{
   friendshipRequests: NucFriendshipRequestsInterface
@@ -48,6 +45,6 @@ async function handleAddFriend() {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import 'index';
 </style>

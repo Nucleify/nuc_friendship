@@ -27,5 +27,5 @@ function syncFriendships(): void {
 </script>
 
 <style lang="scss">
-@import '.';
+@import 'index';
 </style>

@@ -12,8 +12,18 @@
 
   .friendship-content {
     flex: 1;
+    min-height: 0;
     display: flex;
     flex-direction: column;
     gap: 1em;
+    overflow: hidden;
+
+    .friends-list,
+    .requests-list,
+    .blocked-list {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+    }
   }
 }

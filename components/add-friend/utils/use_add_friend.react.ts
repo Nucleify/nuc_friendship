@@ -1,3 +1,5 @@
+'use client'
+
 import type { NucUserObjectInterface, UseAddFriendInterface } from 'nucleify'
 
 export function useAddFriend({
@@ -6,13 +8,13 @@ export function useAddFriend({
   users,
 }: UseAddFriendInterface) {
   async function handleAddFriend(): Promise<void> {
-    if (!searchEmail.value.trim()) return
+    if (!searchEmail.trim()) return
 
     try {
       await users.getAllUsers()
-      const user = users.results.value?.find(
+      const user = users.results?.find(
         (u: NucUserObjectInterface) =>
-          u.email?.toLowerCase() === searchEmail.value.toLowerCase()
+          u.email?.toLowerCase() === searchEmail.toLowerCase()
       )
 
       if (!user || !user.id) {

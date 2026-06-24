@@ -1,4 +1,6 @@
-import { computed, ref } from 'vue'
+'use client'
+
+import { useMemo, useState } from 'react'
 
 import type {
   NucFriendshipTabType,
@@ -14,24 +16,27 @@ export function useFriendshipPopover({
   blockFriend,
   unblockFriend,
 }: UseFriendshipPopoverInterface) {
-  const activeTab = ref<NucFriendshipTabType>('friends')
+  const [activeTab, setActiveTab] = useState<NucFriendshipTabType>('friends')
 
-  const friends = computed(() =>
-    readFriendshipPopoverResults(results).filter(
-      (f) => String(f.status).toLowerCase() === 'accepted'
-    )
+  const list = useMemo(() => readFriendshipPopoverResults(results), [results])
+
+  const friends = useMemo(
+    () => list.filter((f) => String(f.status).toLowerCase() === 'accepted'),
+    [list]
   )
 
-  const requests = computed(() =>
-    readFriendshipPopoverResults(results).filter(
-      (f) => String(f.status).toLowerCase() === 'pending' && f.incoming === true
-    )
+  const requests = useMemo(
+    () =>
+      list.filter(
+        (f) =>
+          String(f.status).toLowerCase() === 'pending' && f.incoming === true
+      ),
+    [list]
   )
 
-  const blocked = computed(() =>
-    readFriendshipPopoverResults(results).filter(
-      (f) => String(f.status).toLowerCase() === 'blocked'
-    )
+  const blocked = useMemo(
+    () => list.filter((f) => String(f.status).toLowerCase() === 'blocked'),
+    [list]
   )
 
   async function handleAcceptRequest(senderId: number): Promise<void> {
@@ -56,6 +61,7 @@ export function useFriendshipPopover({
 
   return {
     activeTab,
+    setActiveTab,
     friends,
     requests,
     blocked,

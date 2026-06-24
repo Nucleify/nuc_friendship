@@ -3,7 +3,7 @@ import { ref } from 'vue'
 
 import * as nucleify from 'nucleify'
 
-import { useAddFriend } from '.'
+import { useAddFriend } from './use_add_friend'
 
 describe('useAddFriend', (): void => {
   let searchEmail: ReturnType<typeof ref<string>>

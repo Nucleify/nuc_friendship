@@ -1,16 +1,20 @@
-/**
- *  Module's main file export
- */
+export { default as NucFriendship } from './index.vue'
 export * from './nuc_friendship'
 
-/**
- *  Folders exports
- */
-export * from './components'
-export * from './atomic'
-export * from './vitests'
-
-/**
- *  Files exports
- */
-export { default as NucFriendship } from './index.vue'
+export * from './atomic/bosons/types/api/interfaces'
+export * from './atomic/bosons/types/object/interfaces'
+export * from './atomic/bosons/utils/api/requests'
+export { default as NucFriendshipAddFriend } from './components/add-friend/index.vue'
+export * from './components/add-friend/types/interfaces'
+export * from './components/add-friend/utils/use_add_friend'
+export { default as NucFriendshipBlockedList } from './components/blocked-list/index.vue'
+export { default as NucFriendItem } from './components/friend-item/index.vue'
+export { default as NucFriendshipFriendsList } from './components/friends-list/index.vue'
+export { default as NucFriendshipPopover } from './components/popover/index.vue'
+export * from './components/popover/types/interfaces'
+export * from './components/popover/utils/read_friendship_popover_results'
+export * from './components/popover/utils/use_friendship_popover'
+export { default as NucFriendshipRequestsList } from './components/requests-list/index.vue'
+export { default as NucFriendshipTabs } from './components/tabs/index.vue'
+export * from './components/tabs/types/variables'
+export * from './vitests/constants/friendship'

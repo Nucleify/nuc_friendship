@@ -9,7 +9,7 @@ import {
   NucFriendshipPopover,
   NucFriendshipRequestsList,
   NucFriendshipTabs,
-} from '.'
+} from 'nucleify'
 
 export function registerNucFriendship(app: App<Element>): void {
   app

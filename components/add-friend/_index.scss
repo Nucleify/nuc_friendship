@@ -1,5 +1,5 @@
 .add-friend {
-  padding-bottom: .5em;
+  padding-bottom: 0.5em;
 
   .add-friend-input {
     display: flex;
@@ -8,6 +8,27 @@
 
     .search-input {
       flex: 1;
+      min-width: 0;
+    }
+
+    .invite-button {
+      flex-shrink: 0;
+      height: 40px;
+      border-radius: 8px;
+      box-shadow: none !important;
+      background-color: $primary-color !important;
+      border-color: $primary-color !important;
+      color: #000 !important;
+
+      .p-button-label,
+      .iconify {
+        color: #000 !important;
+      }
+
+      &:hover {
+        background-color: $primary-hover-color !important;
+        border-color: $primary-hover-color !important;
+      }
     }
   }
 }

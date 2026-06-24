@@ -3,7 +3,7 @@ import { ref } from 'vue'
 
 import * as nucleify from 'nucleify'
 
-import { useFriendshipPopover } from '.'
+import { useFriendshipPopover } from './use_friendship_popover'
 
 describe('useFriendshipPopover', (): void => {
   let results: ReturnType<typeof ref<nucleify.NucFriendshipObjectInterface[]>>
@@ -63,7 +63,14 @@ describe('useFriendshipPopover', (): void => {
       mockFriendshipBlocked,
     ]
 
-    useFriendshipPopoverInstance = useFriendshipPopover(() => friendship)
+    useFriendshipPopoverInstance = useFriendshipPopover({
+      results: friendship.results,
+      acceptRequest: friendship.acceptRequest,
+      denyRequest: friendship.denyRequest,
+      removeFriend: friendship.removeFriend,
+      blockFriend: friendship.blockFriend,
+      unblockFriend: friendship.unblockFriend,
+    })
   })
 
   it('should initialize activeTab as friends', (): void => {
@@ -115,7 +122,14 @@ describe('useFriendshipPopover', (): void => {
   ) {
     const testFriendship = nucleify.friendshipRequests()
     const spy = vi.spyOn(testFriendship, methodName)
-    const instance = useFriendshipPopover(() => testFriendship)
+    const instance = useFriendshipPopover({
+      results: testFriendship.results,
+      acceptRequest: testFriendship.acceptRequest,
+      denyRequest: testFriendship.denyRequest,
+      removeFriend: testFriendship.removeFriend,
+      blockFriend: testFriendship.blockFriend,
+      unblockFriend: testFriendship.unblockFriend,
+    })
     return { instance, spy }
   }
 

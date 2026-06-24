@@ -34,11 +34,9 @@
 </template>
 
 <script setup lang="ts">
-import type { NucFriendshipRequestsInterface } from '../../atomic/bosons/types/api/interfaces'
+import type { NucFriendshipRequestsInterface } from 'nucleify'
+import { useFriendshipPopover } from 'nucleify'
 
-import { useFriendshipPopover } from './utils'
-
-/** Jedna instancja z `NucFriendship` (prop) — bez inject przez Teleport. */
 const props = defineProps<{
   friendshipRequests: NucFriendshipRequestsInterface
 }>()
@@ -55,7 +53,14 @@ const {
   handleRemoveFriend,
   handleBlockFriend,
   handleUnblockFriend,
-} = useFriendshipPopover(() => props.friendshipRequests)
+} = useFriendshipPopover({
+  results: friendship.results,
+  acceptRequest: friendship.acceptRequest,
+  denyRequest: friendship.denyRequest,
+  removeFriend: friendship.removeFriend,
+  blockFriend: friendship.blockFriend,
+  unblockFriend: friendship.unblockFriend,
+})
 </script>
 
 <style lang="scss">

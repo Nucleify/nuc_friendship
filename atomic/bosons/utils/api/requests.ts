@@ -1,31 +1,39 @@
-import { ref } from 'vue'
+'use client'
 
 import type {
+  AppFramework,
   NucFriendshipObjectInterface,
   NucFriendshipRequestsInterface,
-  UseLoadingInterface,
 } from 'nucleify'
-import { apiHandle, useApiSuccess, useLoading } from 'nucleify'
+import {
+  apiHandle,
+  createEntityRequestState,
+  useApiSuccess,
+  useLoading,
+} from 'nucleify'
 
-export function friendshipRequests(): NucFriendshipRequestsInterface {
-  const results = ref<NucFriendshipObjectInterface[]>([])
+const FRIENDSHIP_URL = '/friendship'
 
-  const { loading, setLoading }: UseLoadingInterface = useLoading()
+export function friendshipRequests(
+  framework: AppFramework = 'nuxt'
+): NucFriendshipRequestsInterface {
+  const { results, setResults } =
+    createEntityRequestState<NucFriendshipObjectInterface>(framework)
+
+  const { loading, setLoading } = useLoading()
   const { apiSuccess } = useApiSuccess()
 
-  async function getAllFriendships(loading?: boolean): Promise<void> {
+  async function getAllFriendships(showLoading?: boolean): Promise<void> {
     await apiHandle<NucFriendshipObjectInterface[]>({
-      url: apiUrl() + '/friendship/all',
-      setLoading: loading ? setLoading : undefined,
-      onSuccess: (response: NucFriendshipObjectInterface[]) => {
-        results.value = response
-      },
+      url: `${FRIENDSHIP_URL}/all`,
+      setLoading: showLoading ? setLoading : undefined,
+      onSuccess: setResults,
     })
   }
 
-  async function sendRequest(recipientId: number | string): Promise<void> {
+  async function sendRequest(recipientId: number): Promise<void> {
     await apiHandle<{ message: string }>({
-      url: apiUrl() + '/friendship/send-request',
+      url: `${FRIENDSHIP_URL}/send-request`,
       method: 'POST',
       id: recipientId,
       onSuccess: () => {
@@ -39,9 +47,9 @@ export function friendshipRequests(): NucFriendshipRequestsInterface {
     })
   }
 
-  async function acceptRequest(senderId: number | string): Promise<void> {
+  async function acceptRequest(senderId: number): Promise<void> {
     await apiHandle<{ message: string }>({
-      url: apiUrl() + '/friendship/accept-request',
+      url: `${FRIENDSHIP_URL}/accept-request`,
       method: 'POST',
       id: senderId,
       onSuccess: () => {
@@ -55,9 +63,9 @@ export function friendshipRequests(): NucFriendshipRequestsInterface {
     })
   }
 
-  async function denyRequest(senderId: number | string): Promise<void> {
+  async function denyRequest(senderId: number): Promise<void> {
     await apiHandle<{ message: string }>({
-      url: apiUrl() + '/friendship/deny-request',
+      url: `${FRIENDSHIP_URL}/deny-request`,
       method: 'POST',
       id: senderId,
       onSuccess: () => {
@@ -71,9 +79,9 @@ export function friendshipRequests(): NucFriendshipRequestsInterface {
     })
   }
 
-  async function removeFriend(friendId: number | string): Promise<void> {
+  async function removeFriend(friendId: number): Promise<void> {
     await apiHandle<{ message: string }>({
-      url: apiUrl() + '/friendship/remove',
+      url: `${FRIENDSHIP_URL}/remove`,
       method: 'DELETE',
       id: friendId,
       onSuccess: () => {
@@ -87,9 +95,9 @@ export function friendshipRequests(): NucFriendshipRequestsInterface {
     })
   }
 
-  async function blockFriend(friendId: number | string): Promise<void> {
+  async function blockFriend(friendId: number): Promise<void> {
     await apiHandle<{ message: string }>({
-      url: apiUrl() + '/friendship/block',
+      url: `${FRIENDSHIP_URL}/block`,
       method: 'POST',
       id: friendId,
       onSuccess: () => {
@@ -103,9 +111,9 @@ export function friendshipRequests(): NucFriendshipRequestsInterface {
     })
   }
 
-  async function unblockFriend(friendId: number | string): Promise<void> {
+  async function unblockFriend(friendId: number): Promise<void> {
     await apiHandle<{ message: string }>({
-      url: apiUrl() + '/friendship/unblock',
+      url: `${FRIENDSHIP_URL}/unblock`,
       method: 'DELETE',
       id: friendId,
       onSuccess: () => {

@@ -1,12 +1,13 @@
+export interface NucFriendInterface {
+  id: number
+  name: string
+  email: string
+  role: string
+}
+
 export interface NucFriendshipObjectInterface {
   id: number
-  friend: {
-    id: number | string
-    name: string
-    email: string
-    role: string
-  }
-  /** Zaproszenie przychodzące (recipient = ja); wyłączone z zakładki Requests jeśli false. */
+  friend: NucFriendInterface
   incoming?: boolean
   status: 'pending' | 'accepted' | 'denied' | 'blocked'
   created_at: string

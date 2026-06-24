@@ -36,6 +36,18 @@
       padding: 0.5em !important;
       font-size: 1em;
     }
+
+    .p-button[ad-type='main'].p-button-text {
+      color: $primary-color !important;
+
+      .iconify {
+        color: $primary-color !important;
+      }
+
+      &:hover {
+        background: $primary-selected-color !important;
+      }
+    }
   }
 }
 
