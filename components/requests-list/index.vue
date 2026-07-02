@@ -13,7 +13,7 @@
           icon="prime:check"
           text
           rounded
-          ad-type="main"
+          nui-type="main"
           @click="$emit('accept', friendId)"
         />
         <ad-button

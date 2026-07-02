@@ -5,7 +5,7 @@
       :key="tab"
       :label="toTitleCase(tab)"
       :text="activeTab !== tab"
-      ad-type="main"
+      nui-type="main"
       class="tab-button"
       @click="$emit('update:activeTab', tab)"
     />

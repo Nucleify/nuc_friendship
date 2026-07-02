@@ -14,7 +14,7 @@
             icon="prime:ban"
             text
             rounded
-            ad-type="main"
+            nui-type="main"
             @click="$emit('block', friendId)"
           />
           <ad-button

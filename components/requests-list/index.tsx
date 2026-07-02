@@ -37,7 +37,7 @@ export const NucFriendshipRequestsList: React.FC<
                 icon="prime:check"
                 text
                 rounded
-                adType="main"
+                nuiType="main"
                 onClick={() => onAccept(friendId)}
               />
               <AdButton

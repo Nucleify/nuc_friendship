@@ -35,7 +35,7 @@ export const NucFriendshipBlockedList: React.FC<
               icon="prime:unlock"
               text
               rounded
-              adType="main"
+              nuiType="main"
               onClick={() => onUnblock(friendId)}
             />
           )}

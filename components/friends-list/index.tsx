@@ -37,7 +37,7 @@ export const NucFriendshipFriendsList: React.FC<
                 icon="prime:ban"
                 text
                 rounded
-                adType="main"
+                nuiType="main"
                 onClick={() => onBlock(friendId)}
               />
               <AdButton

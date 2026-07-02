@@ -36,14 +36,14 @@ export const NucFriendshipAddFriend: React.FC = () => {
           value={searchEmail}
           onChange={(e) => setSearchEmail(e.target.value)}
           placeholder="User email"
-          adType="main"
+          nuiType="main"
           className="search-input"
           onKeyUp={(e) => e.key === 'Enter' && handleAddFriend()}
         />
         <AdButton
           label="Invite"
           icon="prime:user-plus"
-          adType="main"
+          nuiType="main"
           className="invite-button"
           loading={friendship.loading}
           onClick={handleAddFriend}

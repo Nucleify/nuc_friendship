@@ -29,7 +29,7 @@ export const NucFriendshipTabs: React.FC<NucFriendshipTabsProps> = ({
           key={tab}
           label={toTitleCase(tab)}
           text={activeTab !== tab}
-          adType="main"
+          nuiType="main"
           className="tab-button"
           onClick={() => onTabChange(tab)}
         />

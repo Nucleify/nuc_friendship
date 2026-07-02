@@ -4,14 +4,14 @@
       <ad-input-text
         v-model="searchEmail"
         placeholder="User email"
-        ad-type="main"
+        nui-type="main"
         class="search-input"
         @keyup.enter="handleAddFriend"
       />
       <ad-button
         label="Invite"
         icon="prime:user-plus"
-        ad-type="main"
+        nui-type="main"
         :loading="loading"
         @click="handleAddFriend"
       />

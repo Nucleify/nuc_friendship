@@ -13,7 +13,7 @@
           icon="prime:unlock"
           text
           rounded
-          ad-type="main"
+          nui-type="main"
           @click="$emit('unblock', friendId)"
         />
       </template>
